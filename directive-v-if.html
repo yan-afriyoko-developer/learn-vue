@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Hampir sama dengan v-show, v-if merupakan directive yang digunakan untuk merender 
+        atau tidak merender suatu elemen DOM (conditional rendering). -->
+        <template v-if="content">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+
+        <div v-if="nilai === 'A'">
+            Sempurna
+          </div>
+          <div v-else-if="nilai === 'B'">
+            Bagus
+          </div>
+          <div v-else-if="nilai === 'C'">
+            Cukup
+          </div>
+          <div v-else>
+            Kurang
+          </div>
+
+    <!-- Jika variabel renderTitle bernilai false maka teks variabel title tidak akan dirender 
+    sehingga jika kita lakukan inspect elemen, maka elemen tersebut memang benar-benar 
+    tidak ada dibrowser. Hal ini berbeda dengan directive sebelumnya, yang tampil 
+    dan tidaknya hanya melalui CSS. Kita bisa menggunakan elemen template atau div 
+    atau apapun untuk blok konten -->
+
+  </div>
+  <script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            nilai: "B",
+            content : true
+        },
+    })
+
+  </script>
+</body>
+</html>

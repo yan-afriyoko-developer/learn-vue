@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    v-html
+    v-once
+    v-text -->
+    <div id="app">
+        <p v-html="message"></p>
+        <p v-once>{{ message }}</p>
+        <p>{{ message }}</p>
+   
+        
+       
+        <div v-if="nilai === 'A'">
+          Sempurna
+        </div>
+        <div v-else-if="nilai === 'B'">
+          Bagus
+        </div>
+        <div v-else-if="nilai === 'C'">
+          Cukup
+        </div>
+        <div v-else>
+          Kurang
+        </div>
+        
+        <button onclick="window.alert('halo')"> 
+          Informasi 
+        </button>
+
+        <button v-on:click="counter += 1">
+          Counter 
+        </button>
+        <button onclick="vm.counter += 1">
+          Counter vm
+        </button>
+        <p>Button di atas telah diklik sebanyak {{ counter }} kali.</p>
+
+        <a href="http://vuejs.org" v-on:click="link($event)">
+          Vuejs.org
+        </a>
+
+
+        <!-- mencegah reload halaman saat event submit -->
+        <!-- mencegah reload halaman saat event submit -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- ketika ditekan enter maka akan menjalankan fungsi submit -->
+<input v-on:keyup.enter="info('Terima kasih ' + $event.target.value)">
+
+<!-- Shift + Click -->
+<button v-on:click.ctrl="info('hola')">
+  SHIFT + CLICK
+</button>
+
+      </div>
+      
+      <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                nilai: "B",
+                message:"hello",
+                counter: 0
+            },
+            methods: {
+              link (event) {
+                  alert('Go to link')
+                  event.preventDefault()
+              }
+            }
+        })
+      </script>
+</body>
+</html>

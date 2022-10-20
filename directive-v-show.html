@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Merupakan directive yang digunakan untuk menampilkan atau menyembunyikan suatu elemen DOM. Directive ini membutuhkan variabel bertipe boolean. -->
+    <p v-show="displayMessage">{{ message }}</p>
+    
+    <!-- Ketika variabel displayMessage bernilai true maka teks message akan terlihat di browser, 
+    sebaliknya jika jika variabel displayMessage bernilai false maka teks message tidak akan 
+    terlihat di browser. Proses on/off pada directive ini menggunakan properti display pada CSS.
+    Artinya, apabila kita lakukan inspect element dengan menggunakan browser maka elemen tersebut 
+    tetap ter-render namun tidak terlihat di browser karena di-hidden menggunakan CSS. -->
+    
+  </div>
+  <script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+            data: {
+              displayMessage: true,
+              message : "hello"
+        }
+    })
+  </script>
+</body>
+</html>
