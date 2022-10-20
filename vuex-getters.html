@@ -7,8 +7,8 @@
 </head>
 <body>
   <div id="app"></div>
-  <script type="text/javascript">
-  //koding VuexStore pada bagian dua di sini
+  <script type="module">
+    import { Hello } from "./components/Hello.js"
     const store = new Vuex.Store({
       state: {
         counter: 0
@@ -17,30 +17,43 @@
         increment(state){
             state.counter++
         } 
-      }
+      },
+      getters: {
+        counter: state => state.counter
+
+            /*
+            counter(state){
+                return state.counter
+            }
+            */
+        }
     })
+    
     new Vue({
       el: '#app',
-      // local state as computed
+      store,
+      components: {
+          'hello': Hello
+      },
       computed: {
-            counter(){
-                return store.state.counter
-            }
+        counter(){
+            return store.getters.counter
+        }
       },
       // view
       template: `
           <div>
               {{ counter }} 
               <button @click="increment()"> + </button>
+              <hello></hello>
           </div>
       `,
-      // actions
       methods: {
           increment () {
               store.commit('increment')
           },
       },
-    })
+  })
   </script>
 </body>
 </html>
