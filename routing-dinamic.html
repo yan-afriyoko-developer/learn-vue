@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>        
+        <router-link to="/books">Books</router-link>        
+        <hr>
+        <router-view></router-view>
+    </div>
+    <script type="module">
+    import { BooksComponent } from './components/BooksComponent.js'
+    import { BookComponent } from './components/BookComponent.js'
+    // definisikan konfigurasi component
+    const Home = { template: '<div>Halaman Home</div>' }
+    const About = { template: '<div>Halaman About</div>' }
+
+    // mapping route path dengan componentnya, dibaca dari atas ke bawah
+    const routes = [
+        { path: '/', component: Home, alias: '/home' },
+        { path: '/about', component: About },
+        { path: '/books', component: BooksComponent },
+        { path: '/book/:id', name: 'book', component: BookComponent, props: true },
+        { path: '*', redirect: '/' }
+    ]
+    
+
+    // register routing aplikasi kita pada objek dari class VueRouter
+    const router = new VueRouter({
+        routes // bentuk pendek dari `routes: routes`
+    })
+
+    // register objek router pada objek Vue
+    var vm = new Vue({
+        el: '#app',
+        router,
+    })
+
+    
+  </script>
+</body>
+</html>
