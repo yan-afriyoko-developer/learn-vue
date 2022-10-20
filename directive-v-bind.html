@@ -9,13 +9,22 @@
     <!-- Directive ini berfungsi untuk mem-binding atribut HTML atau
          komponen agar nilainya terupdate secara reactive sesuai dengan datanya,
           kebalikan dari v-on. -->
+          
     <img v-bind:src="imageSrc">
+    <img v-bind="{ id: imageID, src: imageSrc }" />
+    <div v-bind:class="[classA, classB]"></div>
+    <div v-bind:class="{ red: isRed }"></div>
+    <div v-bind:style="{ fontSize: size + 'px' }"></div>
+    <!-- penulisan directive v-bind: dapat disingkat menjadi :, contoh: -->
+    <a :href="url"> Website VueJS </a>
   </div>
   <script>
         var vm = new Vue({
             el: '#app',
             data: {
+                imageID: 'image1',
                 imageSrc: 'img/users.png',
+                url:"https://tiktok.com/"
             }
         })
         

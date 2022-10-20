@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+  <style>
+    form {
+        border: 1px solid #ddd;
+        padding:5px;
+        width:225px;
+        background: #efefef;
+    }
+    label{
+        display: block;
+        margin-top: 5px;
+    }
+    
+    input, textarea, select, option {
+        min-width: 200px;
+    }
+    </style>
+</head>
+<body>
+  <div id="app">
+    <form @submit="submitForm($event)" action="http://example.com/add-product" method="post">
+        <label>Title:</label>
+        <input type="text" v-model="title" />
+    
+        <label>Description:</label>
+        <textarea v-model="description"></textarea>
+    
+        <label>Authors:</label>
+        <input type="text" v-model="authors">
+    
+        <label>Price:</label>
+        <input type="number" v-model.number="price">
+    
+        <label>Categories:</label>
+        <select v-model="categories" multiple>
+            <option v-for="option in options" :value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <label>Cover:</label>
+        <input name="cover" ref="cover" type="file">
+        <label></label>
+        <input type="submit" value="Submit">  
+    </form>
+  </div>
+  <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                description: '',
+                authors: '',
+                price: 0,
+                categories: [],
+                options: [
+                    { text: 'Graphics Programming', value: '01' },
+                    { text: 'Mobile Application Development', value: '02' },
+                    { text: 'Virtual and Augmented Reality', value: '03' }
+                ]
+            },
+            methods: {
+                submitForm(event){
+                    console.log(event)
+
+                    // kode validasi
+                    let error = 0
+
+                    if(this.title.length < 3){
+                        error++
+                        alert('Title minimal 3 karakter!')
+                    }
+                    else if(this.description.length > 500){
+                        error++
+                        alert('Description maximal 500 karakter!')
+                    } 
+                    else if(this.authors.length < 3){
+                        error++
+                        alert('Authors minimal 3 karakter!')
+                    } 
+                    else if(this.price < 0){
+                        error++
+                        alert('Price tidak boleh minus!')
+                    } 
+                    else if(this.categories.length === 0){
+                        error++
+                        alert('Pilih minimal 1 category!')
+                    } 
+
+                    if( error === 0 ){
+                        alert('Terima kasih telah mengisi data dengan benar!')
+                        // kirim data ke server
+                    }
+                    let cover = this.$refs.cover.files[0]
+                    event.preventDefault()
+
+                
+                }
+            }
+        })
+  </script>
+</body>
+</html>

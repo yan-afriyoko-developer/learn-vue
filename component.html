@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <hello-world></hello-world>
+    <hello-world></hello-world>
+    <hello-world></hello-world>
+  </div>
+  <script type="text/javascript">
+    Vue.component('hello-world', {
+        data () {
+            return {
+                message: 'Hello worlda!'
+            }
+        },
+        template: '<h1> {{ message }}</h1>'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+    })
+  </script>
+</body>
+</html>

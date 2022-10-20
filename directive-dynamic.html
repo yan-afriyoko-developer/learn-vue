@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <a v-bind:[nama_atribut]="url"> Hello</a>
+    <a :[nama_atribut]="url"> Hello </a>
+    <a v-on:[nama_event]="info('hallo')"> Hello </a>
+  </div>
+  <script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+            data: {
+              nama_event: 'click',
+              nama_atribut: 'href',
+              url:"https://vuejs.org/"
+        },
+        methods: {
+          info (text) {
+            alert(text)
+          }
+        }
+    })
+  </script>
+</body>
+</html>
