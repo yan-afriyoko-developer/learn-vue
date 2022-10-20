@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar Vue</title>
+  <script src="lib/vue.js"></script>
+<script src="lib/vuex.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/javascript">
+    new Vue({
+        el: '#app',
+        // state
+        data: {
+            counter: 0
+        },
+        // view
+        template: `
+            <div>
+                {{ counter }} 
+                <button @click="increment()"> + </button>
+            </div>
+        `,
+        // actions
+        methods: {
+            increment () {
+                this.counter++
+            }
+        }
+    })
+  </script>
+</body>
+</html>
